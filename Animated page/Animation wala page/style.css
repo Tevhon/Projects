@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
+
+*{
+    margin: 0px;
+    padding: 0%;
+    box-sizing: border-box;
+    font-family:'open Sans', sans-serif;
+}
+
+body{
+    display: flex;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color:#000000
+}
+
+.square{
+    position: relative;
+    width: 500px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.square i{
+    position: absolute;
+    inset: 0;
+    border: 2px solid #fff;  
+    transition: 0.5s;
+}
+
+.square i:nth-child(1){
+    border-radius: 38% 62% 63% 47%/41% 44% 56% 59%;
+    animation:animate  6s linear infinite;
+}
+
+.square i:nth-child(2){
+    border-radius: 41% 44% 56% 59%/38% 62% 63% 47%;
+    animation:animate  4s linear infinite;
+}
+
+.square i:nth-child(3){
+    border-radius:  41% 44% 56% 59% / 38% 62% 63% 37%;
+    animation:animate  10s linear infinite;
+}
+
+.square:hover i{
+    border: 6px solid var(--clr);
+    filter: drop-shadow(0 0 20px var(--clr))
+}
+
+@keyframes animate{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+.login{
+    position: absolute;
+    width: 300px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    color: white;
+    
+}
+
+h1 {
+    background: -webkit-linear-gradient(45deg, rgb(255, 8, 255), orange );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+    
+.login .inputbx{
+    position: relative;
+    width: 100%;
+}
+
+.login .inputbx input{
+    position: relative;
+    width: 100%;
+    padding: 12px 20px;
+    background: transparent;
+    border: 2px solid #fff;
+    border-radius: 40px;
+    color: #fff;
+    font-size: 1.2em;
+    box-shadow: none;
+    outline: none;
+}
+
+.login .inputbx input[type="submit"]{
+    width: 100%;
+    font-weight: 600;
+    border: none;
+    background-color: #0078ff;
+    background: linear-gradient(45deg, rgb(255, 8, 255), orange );
+    cursor: pointer;
+}
+
+.login .inputbx input::placeholder{
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.login .links {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 20px;
+}
+
+.login .links a{
+    color: #fff;
+}

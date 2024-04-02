@@ -1,0 +1,208 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Netflix Sans,Helvetica Neue,Segoe UI,Roboto,Ubuntu,sans-serif;
+}
+
+body{
+    background-color: #000000;
+    /* border: 2px solid rgb(0, 255, 55); */
+
+}
+
+.container
+{
+    background-image: url(imges/main-img.jpg);
+    height: 90vh;
+    background-position: center center;
+    background-size: 100vw;
+    /* border: 2px solid rgb(72, 0, 255); */
+
+}
+
+.main{
+    height: 100%;
+    /* border: 2px solid orange; */
+}
+
+nav{
+    width: 78vw;
+    margin: auto;
+    padding-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+#net-logo{
+    width: 158px;
+}
+
+.nav-options{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+select{
+    background-color: transparent;
+    color: white;
+    padding: 3px 15px;
+    font-size: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.761);
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+select option{
+    color: #ffffff;
+    background-color: red;
+    font-weight: 600;
+}
+
+#login-btn{
+    background-color: red;
+    color: white;
+    padding: 3px 10px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+
+
+.main .center-part{
+    padding: 0px 10px;
+    height: calc(100% - 58.7px);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+._48wala{
+    font-size: 48px;
+    font-weight: 900;
+}
+
+._24wala{
+    margin: 16px;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+._20wala{
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.send-y-m{
+    margin: 15px auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.send-y-m input{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 4.5rem;
+    padding-left: 10px;
+    padding-right: 140px;
+    text-align: start;
+    color: white;
+    font-weight: 500;
+    font-size: 1rem;
+    border-radius: 5px;
+    background-color: #000000a9;
+    border: 1px solid rgba(255, 255, 255, 0.687);
+    height: 3rem;
+}
+
+
+
+.send-y-m button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: red;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.761);
+    border-radius: 5px;
+    font-weight: 500;
+    border: none;
+    height: 3rem;
+
+}
+
+.next{
+    height: 2px;
+    border: 4px solid #232323;
+}
+
+
+@media screen and (max-width: 932px) {
+    #net-logo{
+        width: 118px;
+    }
+
+    nav{
+        width: 90vw;
+    }
+
+    ._48wala{
+        font-size: 32px;
+        font-weight: 900;
+    }
+    
+    ._24wala{
+        margin: 16px;
+        font-size: 20px;
+        font-weight: 400;
+    }
+    
+    ._20wala{
+        font-weight: 400;
+        font-size: 18px;
+    }
+
+    .send-y-m button{
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+        height: 2.5rem;
+    
+    }
+
+    .send-y-m input{
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+        height: 2.5rem;
+    }
+
+    select{
+        padding: 2px 8px;
+        font-size: 12px;
+        gap: 0;
+    }
+    
+    #login-btn{
+        padding: 2px 8px;
+        font-size: 12px;
+        gap: 0;
+    }
+
+    
+.main .center-part{
+    height: calc(100% - 47.89px);}
+}
