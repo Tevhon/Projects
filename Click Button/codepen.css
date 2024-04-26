@@ -25,29 +25,16 @@ h1:active{
     background: -webkit-linear-gradient(45deg, rgb(255, 8, 255), orange );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    
-}
-
-h1:hover>body{
-    border-width: 4px;
-    border-style: solid;
-    border-image: linear-gradient(to right, rgb(255, 8, 255), orange) 1;
-     
-
 }
 
 button {
     border: 1px  solid rgba(51, 51, 51, 0.248) ;
-    
     border-radius: 35px;
     background-color: #1F1F1F;
     cursor: pointer;
 }
 
-
 button:active{
-   scale: 0.90;
- 
+    scale: 0.90;
     box-shadow: 3px 3px 18px #f6b1ff;
-    /* transform: translateY(5px); */
 }
