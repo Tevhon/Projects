@@ -1,0 +1,128 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX 100
+
+typedef struct {
+    char name[50];
+    float price;
+    int quantity;
+} Item;
+
+typedef struct {
+    Item items[MAX];
+    int top;
+} Stack;
+
+void initStack(Stack *s) {
+    s->top = -1;
+}
+
+int isFull(Stack *s) {
+    return s->top == MAX - 1;
+}
+
+int isEmpty(Stack *s) {
+    return s->top == -1;
+}
+
+void push(Stack *s, Item item) {
+    if (isFull(s)) {
+        printf("Stack is full! Cannot add more items.\n");
+    } else {
+        s->items[++(s->top)] = item;
+        printf("Item added: %s | Price: %.2f | Quantity: %d\n", item.name, item.price, item.quantity);
+    }
+}
+
+void pop(Stack *s) {
+    if (isEmpty(s)) {
+        printf("No items to remove.\n");
+    } else {
+        Item removed = s->items[(s->top)--];
+        printf("Removed item: %s\n", removed.name);
+    }
+}
+
+void display(Stack *s) {
+    if (isEmpty(s)) {
+        printf("No items in the bill.\n");
+    } else {
+        printf("\n--- Current Bill Items ---\n");
+        printf("%-20s %-10s %-10s %-10s\n", "Item", "Price", "Qty", "Total");
+        for (int i = 0; i <= s->top; i++) {
+            float total = s->items[i].price * s->items[i].quantity;
+            printf("%-20s %-10.2f %-10d %-10.2f\n", s->items[i].name, s->items[i].price, s->items[i].quantity, total);
+        }
+    }
+}
+
+void generateBill(Stack *s) {
+    if (isEmpty(s)) {
+        printf("No items to bill.\n");
+        return;
+    }
+    float grandTotal = 0;
+    printf("\n====== FINAL BILL ======\n");
+    printf("%-20s %-10s %-10s %-10s\n", "Item", "Price", "Qty", "Total");
+    for (int i = 0; i <= s->top; i++) {
+        float total = s->items[i].price * s->items[i].quantity;
+        grandTotal += total;
+        printf("%-20s %-10.2f %-10d %-10.2f\n", s->items[i].name, s->items[i].price, s->items[i].quantity, total);
+    }
+    printf("-------------------------------\n");
+    printf("Grand Total: %.2f\n", grandTotal);
+}
+
+int main() {
+    Stack s;
+    initStack(&s);
+    int choice;
+    Item item;
+
+    while (1) {
+        printf("\n==== Supermarket Billing Menu ====\n");
+        printf("1. Add Item\n");
+        printf("2. Remove Last Item\n");
+        printf("3. Display Current Bill\n");
+        printf("4. Generate Final Bill\n");
+        printf("5. Exit\n");
+        printf("Enter choice: ");
+        scanf("%d", &choice);
+        getchar(); // To consume newline
+
+        switch (choice) {
+            case 1:
+                printf("Enter item name: ");
+                fgets(item.name, sizeof(item.name), stdin);
+                item.name[strcspn(item.name, "\n")] = 0; // Remove newline
+                printf("Enter price: ");
+                scanf("%f", &item.price);
+                printf("Enter quantity: ");
+                scanf("%d", &item.quantity);
+                push(&s, item);
+                break;
+
+            case 2:
+                pop(&s);
+                break;
+
+            case 3:
+                display(&s);
+                break;
+
+            case 4:
+                generateBill(&s);
+                break;
+
+            case 5:
+                printf("Thank you for shopping!\n");
+                exit(0);
+
+            default:
+                printf("Invalid choice. Please try again.\n");
+        }
+    }
+    return 0;
+}
