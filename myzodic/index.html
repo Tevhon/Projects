@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zodiac Sign & Astrology Info 🔮</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #ffe6f0, #ffb6c1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 500px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #c2185b;
+      margin-bottom: 1.5rem;
+    }
+
+    input {
+      width: 90%;
+      padding: 0.75rem;
+      margin: 0.5rem 0;
+      border-radius: 0.5rem;
+      border: 2px solid #f8c0d8;
+      font-size: 1rem;
+    }
+
+    button {
+      background-color: #e91e63;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 2rem;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #d81b60;
+    }
+
+    .result {
+      margin-top: 2rem;
+      font-size: 1.1rem;
+      color: #880e4f;
+      line-height: 1.6;
+    }
+
+    .refresh-btn {
+      margin-top: 1.5rem;
+      background-color: #9c27b0;
+    }
+
+    .refresh-btn:hover {
+      background-color: #7b1fa2;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>✨ Zodiac Sign Finder ✨</h1>
+    <input type="text" id="name" placeholder="Enter your name 💁">
+    <input type="date" id="dob">
+    <button onclick="showZodiac()">Reveal My Zodiac ♈</button>
+    <div id="output" class="result"></div>
+  </div>
+
+  <script>
+    function getZodiacSign(month, day) {
+      const zodiacRanges = [
+        { sign: "Capricorn", emoji: "♑", start: [12, 22], end: [1, 19] },
+        { sign: "Aquarius", emoji: "♒", start: [1, 20], end: [2, 18] },
+        { sign: "Pisces", emoji: "♓", start: [2, 19], end: [3, 20] },
+        { sign: "Aries", emoji: "♈", start: [3, 21], end: [4, 19] },
+        { sign: "Taurus", emoji: "♉", start: [4, 20], end: [5, 20] },
+        { sign: "Gemini", emoji: "♊", start: [5, 21], end: [6, 20] },
+        { sign: "Cancer", emoji: "♋", start: [6, 21], end: [7, 22] },
+        { sign: "Leo", emoji: "♌", start: [7, 23], end: [8, 22] },
+        { sign: "Virgo", emoji: "♍", start: [8, 23], end: [9, 22] },
+        { sign: "Libra", emoji: "♎", start: [9, 23], end: [10, 22] },
+        { sign: "Scorpio", emoji: "♏", start: [10, 23], end: [11, 21] },
+        { sign: "Sagittarius", emoji: "♐", start: [11, 22], end: [12, 21] }
+      ];
+
+      for (const z of zodiacRanges) {
+        const [startMonth, startDay] = z.start;
+        const [endMonth, endDay] = z.end;
+        if (
+          (month === startMonth && day >= startDay) ||
+          (month === endMonth && day <= endDay)
+        ) {
+          return [z.sign, z.emoji];
+        }
+      }
+      return ["Capricorn", "♑"];
+    }
+
+    function showZodiac() {
+      const name = document.getElementById("name").value.trim();
+      const dob = document.getElementById("dob").value;
+      const output = document.getElementById("output");
+
+      if (!name || !dob) {
+        alert("Please fill in both fields 💫");
+        return;
+      }
+
+      const birthDate = new Date(dob);
+      const month = birthDate.getMonth() + 1;
+      const day = birthDate.getDate();
+
+      const [sign, emoji] = getZodiacSign(month, day);
+      const info = astrologyData[sign];
+
+      output.innerHTML = `Hey ${name} 🌟<br><strong>Your Zodiac Sign is ${sign} ${emoji}</strong><br><br>
+        <strong>Personality:</strong> ${info.personality}<br>
+        <strong>Lucky Number:</strong> ${info.luckyNumber}<br>
+        <strong>Dates:</strong> ${info.dates}<br>
+        <strong>Element:</strong> ${info.element}<br>
+        <strong>Strengths:</strong> ${info.strengths}<br>
+        <strong>Weaknesses:</strong> ${info.weaknesses}<br><br>
+        <button class="refresh-btn" onclick="location.reload()">Start again 🔄</button>`;
+    }
+
+    const astrologyData = {
+      "Aries": {
+        personality: "Bold, ambitious, full of energy 🔥",
+        luckyNumber: 9,
+        dates: "March 21 – April 19",
+        element: "Fire",
+        strengths: "Courageous, determined, confident",
+        weaknesses: "Impatient, moody, impulsive"
+      },
+      "Taurus": {
+        personality: "Reliable, patient, practical 🌱",
+        luckyNumber: 6,
+        dates: "April 20 – May 20",
+        element: "Earth",
+        strengths: "Dependable, musical, grounded",
+        weaknesses: "Stubborn, possessive, uncompromising"
+      },
+      "Gemini": {
+        personality: "Curious, adaptable, witty 💨",
+        luckyNumber: 5,
+        dates: "May 21 – June 20",
+        element: "Air",
+        strengths: "Versatile, expressive, clever",
+        weaknesses: "Nervous, inconsistent, indecisive"
+      },
+      "Cancer": {
+        personality: "Intuitive, emotional, caring 🌊",
+        luckyNumber: 2,
+        dates: "June 21 – July 22",
+        element: "Water",
+        strengths: "Loyal, protective, imaginative",
+        weaknesses: "Moody, pessimistic, suspicious"
+      },
+      "Leo": {
+        personality: "Natural leader, creative, dramatic ☀",
+        luckyNumber: 1,
+        dates: "July 23 – August 22",
+        element: "Fire",
+        strengths: "Charismatic, generous, warm-hearted",
+        weaknesses: "Arrogant, stubborn, self-centered"
+      },
+      "Virgo": {
+        personality: "Logical, analytical, kind-hearted 🌿",
+        luckyNumber: 5,
+        dates: "August 23 – September 22",
+        element: "Earth",
+        strengths: "Hardworking, practical, loyal",
+        weaknesses: "Overly critical, shy, worried"
+      },
+      "Libra": {
+        personality: "Balanced, charming, diplomatic ⚖",
+        luckyNumber: 7,
+        dates: "September 23 – October 22",
+        element: "Air",
+        strengths: "Fair-minded, social, cooperative",
+        weaknesses: "Indecisive, avoids confrontations, self-pitying"
+      },
+      "Scorpio": {
+        personality: "Passionate, assertive, resourceful 🦂",
+        luckyNumber: 8,
+        dates: "October 23 – November 21",
+        element: "Water",
+        strengths: "Brave, loyal, focused",
+        weaknesses: "Jealous, secretive, violent"
+      },
+      "Sagittarius": {
+        personality: "Adventurous, optimistic, honest 🏹",
+        luckyNumber: 3,
+        dates: "November 22 – December 21",
+        element: "Fire",
+        strengths: "Generous, independent, curious",
+        weaknesses: "Impatient, tactless, overconfident"
+      },
+      "Capricorn": {
+        personality: "Disciplined, responsible, ambitious ⛰",
+        luckyNumber: 4,
+        dates: "December 22 – January 19",
+        element: "Earth",
+        strengths: "Patient, wise, hardworking",
+        weaknesses: "Pessimistic, stubborn, reserved"
+      },
+      "Aquarius": {
+        personality: "Innovative, independent, humanitarian 🌌",
+        luckyNumber: 11,
+        dates: "January 20 – February 18",
+        element: "Air",
+        strengths: "Progressive, original, idealistic",
+        weaknesses: "Aloof, rebellious, unpredictable"
+      },
+      "Pisces": {
+        personality: "Compassionate, artistic, wise 🐟",
+        luckyNumber: 7,
+        dates: "February 19 – March 20",
+        element: "Water",
+        strengths: "Empathetic, gentle, imaginative",
+        weaknesses: "Fearful, overly trusting, escapist"
+      }
+    };
+  </script>
+</body>
+</html>

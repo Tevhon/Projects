@@ -4,6 +4,7 @@
   box-sizing: border-box;
   font-family: "Freight Big Pro";
   user-select: none;
+  text-decoration: none;
 }
 #main {
   background-color: black;

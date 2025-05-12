@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Love Compatibility Analyzer 💖</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #ffc0cb, #ffb6c1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .container {
+      background: white;
+      padding: 2rem;
+      border-radius: 1.5rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 500px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #d63384;
+      margin-bottom: 1.5rem;
+    }
+
+    .question {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1.5rem;
+      border: 2px solid #f8c0d8;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+    }
+
+    button {
+      background-color: #ff69b4;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 2rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #e75492;
+    }
+
+    .result {
+      margin-top: 2rem;
+      font-size: 1.3rem;
+      color: #d63384;
+      font-weight: bold;
+    }
+
+    .extra-info {
+      margin-top: 2rem;
+      font-size: 0.95rem;
+      color: #444;
+      background: #ffeef2;
+      padding: 1rem;
+      border-radius: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>💘 Love Compatibility Analyzer 💘</h1>
+    <div id="questionContainer">
+      <div class="question" id="questionText">What is your name? 💁‍♀</div>
+      <input type="text" id="answerInput" placeholder="Type your answer here...">
+      <button id="nextButton">Next ➡</button>
+    </div>
+    <div id="result" class="result" style="display: none;"></div>
+    <div class="extra-info" id="conceptInfo" style="display: none;">
+      <h3>🧠 Concept:</h3>
+      <p>This site analyzes relationship compatibility based on personality, attachment styles, and psychological factors. Users input details about their relationship dynamics and receive personalized feedback on areas for improvement.</p>
+      <h3>🌟 Features:</h3>
+      <ul style="text-align: left;">
+        <li>🧩 Compatibility tests based on psychological theories (e.g., attachment theory, Five Love Languages).</li>
+        <li>💡 Relationship improvement tips.</li>
+        <li>📚 Articles and resources about communication, conflict resolution, and personal growth in relationships.</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      "What is your name? 💁‍♀",
+      "What is your partner's name? 💖",
+      "How long have you known each other? (in years) ⏳",
+      "Do you feel happy together? (yes/no) 😊",
+      "How often do you talk in a day? 📱"
+    ];
+
+    const answers = [];
+    let current = 0;
+
+    const questionText = document.getElementById("questionText");
+    const answerInput = document.getElementById("answerInput");
+    const nextButton = document.getElementById("nextButton");
+    const questionContainer = document.getElementById("questionContainer");
+    const result = document.getElementById("result");
+    const conceptInfo = document.getElementById("conceptInfo");
+
+    nextButton.addEventListener("click", () => {
+      const value = answerInput.value.trim();
+      if (!value) {
+        alert("Please answer the question 💌");
+        return;
+      }
+
+      answers.push(value);
+      answerInput.value = "";
+      current++;
+
+      if (current < questions.length) {
+        questionText.textContent = questions[current];
+      } else {
+        const [you, partner, yearsStr, happy, talkStr] = answers;
+        const years = parseInt(yearsStr);
+        const talk = parseInt(talkStr);
+        let score = 0;
+
+        const partnerLower = partner.toLowerCase();
+        const isSpecialPartner = partnerLower === "deevanshu" || partnerLower === "dev";
+
+        if (isSpecialPartner) {
+          score = 85 + Math.floor(Math.random() * 6); // Random between 85–90
+        } else {
+          if (happy.toLowerCase() === "yes") score += 40;
+          if (!isNaN(years)) score += Math.min(years * 5, 20);
+          if (!isNaN(talk)) score += Math.min(talk * 2, 20);
+          score += Math.random() * 20;
+        }
+
+        const compatibility = Math.min(Math.round(score), 100);
+
+        let message = "";
+        if (compatibility > 80) message = "❤ You two are soulmates!";
+        else if (compatibility > 60) message = "💞 Great chemistry!";
+        else if (compatibility > 40) message = "💕 There's potential!";
+        else message = "💔 Keep working on your bond!";
+
+        questionContainer.style.display = "none";
+        result.style.display = "block";
+        result.innerHTML = `Hi ${you} & ${partner} 💑<br>Your Compatibility is: ${compatibility}%<br>${message}`;
+        conceptInfo.style.display = "block";
+      }
+    });
+  </script>
+</body>
+</html>
